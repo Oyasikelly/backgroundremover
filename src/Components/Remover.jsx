@@ -26,9 +26,9 @@ export default function Remover({
   }
 
   const removeBackground = async (imageUrl) => {
-    // const apiKey = "0eaf034066ed7e5c243f379b2274ee09d9f82867"; // Replace with your actual API key
-    const apiKey = "sandbox_0eaf034066ed7e5c243f379b2274ee09d9f82867"; // Replace with your actual API key
-    const apiEndpoint = `https://image-api.photoroom.com/v2/edit?background.color=ffffff&maxHeight=500&maxWidth=500&imageUrl=${imageUrl}`;
+    const apiKey = "0eaf034066ed7e5c243f379b2274ee09d9f82867"; // Replace with your actual API key
+    // const apiKey = "sandbox_0eaf034066ed7e5c243f379b2274ee09d9f82867"; // Replace with your actual API key
+    const apiEndpoint = "https://sdk.photoroom.com/v1/segment";
 
     try {
       const response = await axios.post(
@@ -39,7 +39,7 @@ export default function Remover({
         {
           headers: {
             "x-api-key": apiKey,
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -66,7 +66,6 @@ export default function Remover({
       {menu === true && (
         <div className="Menu" onClick={handleCloseMenu}>
           <span style={{ fontSize: "24px" }}>&#10006;</span>
-          {/* <span style={{font-size: "24px"}}>&#10006;</span> */}
           <NavLink to="/SavedImages">
             <p>See Saved Images</p>
           </NavLink>
