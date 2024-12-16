@@ -1,0 +1,184 @@
+/** @format */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Young+Serif&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --primary-color: #4b5a4f;
+  --secondary-color: #f7f7f1;
+  --btn-color: #8a9b8e;
+}
+body {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+.container {
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  color: var(--primary-color);
+  padding: 0rem 4rem;
+  position: relative;
+}
+.Menu {
+  background-color: var(--btn-color);
+  color: var(--secondary-color);
+  width: 20%;
+  align-self: flex-end;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.Menu p {
+  border: 2px solid var(--primary-color);
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.Menu p:hover {
+  background-color: var(--primary-color);
+}
+h2 {
+  width: fit-content;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5rem;
+  max-width: 30%;
+}
+header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  width: 100%;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+  top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+i {
+  cursor: pointer;
+}
+.content_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", serif;
+}
+form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 1px solid var(--primary-color);
+  width: 100%;
+}
+button {
+  padding: 1rem;
+  background-color: var(--primary-color);
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s ease-in;
+  color: var(--secondary-color);
+}
+button:hover {
+  background-color: var(--btn-color);
+}
+p {
+  align-self: flex-start;
+}
+.imported-img {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imported-img form {
+  /* background-color: green; */
+  width: fit-content;
+  display: flex;
+  width: 100%;
+  /* justify-content: center; */
+}
+.import-img {
+  width: 100%;
+  padding: 1rem;
+  align-content: center;
+}
+
+.outputWrap{
+  width: 350px;
+  height: 350px;
+  background-color: pink;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding-bottom: 3rem;
+  }
+  .content_container {
+    width: 100%;
+  }
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.Wrap_savedImages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+.saved_images {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: center;
+  justify-items: center;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+}
+.saved_images div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+}
