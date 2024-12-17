@@ -13,8 +13,8 @@ import ImportImage from "./importImage";
 export default function Remover({
   menu,
   setMenu,
-  // webURL,
-  // setWebURL,
+  webURL,
+  setWebURL,
   importedURL,
   setImportedURL,
 }) {
@@ -26,9 +26,9 @@ export default function Remover({
   function handleCloseMenu() {
     setMenu(() => false);
   }
-  // function handleWebURL(e) {
-  //   setWebURL(e.target.value);
-  // }
+  function handleWebURL(e) {
+    setWebURL(e.target.value);
+  }
   function handleImportedURL(e) {
     setImportedURL(e.target.files[0]); // Update importedURL state with the selected file
   }
@@ -37,27 +37,34 @@ export default function Remover({
   const apiEndpoint = "https://sdk.photoroom.com/v1/segment";
 
   // Function to remove background for URL
-  // const removeBackgroundFromURL = async (imageUrl) => {
-  //   try {
-  //     const response = await axios.post(
-  //       apiEndpoint,
-  //       { image_url: imageUrl }, // API expects 'image_url', not 'url'
-  //       {
-  //         headers: {
-  //           "x-api-key": apiKey,
-  //           "Content-Type": "application/json",
-  //         },
-  //         responseType: "blob", // Get the response as a Blob
-  //       }
-  //     );
+  const removeBackgroundFromURL = async (imageUrl) => {
+    try {
+      const response = await axios.post(
+        apiEndpoint,
+        { image_url: imageUrl }, // Corrected payload
+        {
+          headers: {
+            "x-api-key": apiKey, // Include API key
+          },
+          responseType: "blob", // Ensure response is a Blob
+        }
+      );
   
-  //     const imageUrlBlob = URL.createObjectURL(response.data);
-  //     console.log(imageUrlBlob);
-  //     setOutputImage(imageUrlBlob);
-  //   } catch (error) {
-  //     console.error("Error removing background (URL):", error.response?.data || error.message);
-  //   }
-  // };
+      const imageUrlBlob = URL.createObjectURL(response.data);
+      setOutputImage(imageUrlBlob);
+    } catch (error) {
+      console.error("Error removing background (URL):", error);
+  
+      // Try reading the error response if the server sends details
+      if (error.response && error.response.data) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          console.error("Error details:", JSON.parse(reader.result));
+        };
+        reader.readAsText(error.response.data);
+      }
+    }
+  };
   // Function to remove background for imported image
   const removeBackgroundFromFile = async (file) => {
     try {
@@ -79,14 +86,14 @@ export default function Remover({
     }
   };
 
-  // const handleRemoveBackground = async (e) => {
-  //   e.preventDefault();
-  //   if (webURL) {
-  //     await removeBackgroundFromURL(webURL);
-  //   } else {
-  //     alert("Please provide an image URL.");
-  //   }
-  // };
+  const handleRemoveBackground = async (e) => {
+    e.preventDefault();
+    if (webURL) {
+      await removeBackgroundFromURL(webURL);
+    } else {
+      alert("Please provide an image URL.");
+    }
+  };
 
   const handleRemoveBackground_ImportedImg = async (e) => {
     e.preventDefault();
@@ -110,7 +117,7 @@ export default function Remover({
      <Header handleMenu={handleMenu}/>
 
       {/* Remove Background via URL */}
-     {/* <UrlImage webURL={webURL} handleRemoveBackground={handleRemoveBackground} handleWebURL={handleWebURL} /> */}
+     <UrlImage webURL={webURL} handleRemoveBackground={handleRemoveBackground} handleWebURL={handleWebURL} />
 
       {/* Remove Background via Imported File */}
      <ImportImage handleRemoveBackground_ImportedImg={handleRemoveBackground_ImportedImg} handleImportedURL={handleImportedURL}  />
