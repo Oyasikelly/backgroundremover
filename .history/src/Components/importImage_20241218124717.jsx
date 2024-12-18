@@ -12,7 +12,7 @@ export default function ImportImage({handleRemoveBackground_ImportedImg, handleI
         onChange={handleImportedURL}
       />
       <motion.button whileHover={{scale:1.2}} whileTap={{opacity:0.6}} typeof="submit"> 
-          Remove
+Remove
       </motion.button>
     </form>
     

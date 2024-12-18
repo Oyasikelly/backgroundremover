@@ -1,0 +1,8 @@
+export default function Menu(){
+    return <div className="Menu" onClick={handleCloseMenu}>
+              <span style={{ fontSize: "24px" }}>&#10006;</span>
+              <NavLink to="/SavedImages">
+                <p>See Saved Images</p>
+              </NavLink>
+            </div>
+}

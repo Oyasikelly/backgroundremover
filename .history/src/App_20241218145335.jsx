@@ -45,21 +45,6 @@ export default function App() {
       }
     };
 
-
-  // Download localStorage data as a file
-  const downloadData = () => {
-    const userData = localStorage.getItem('savedImage');
-    if (userData) {
-      const blob = new Blob([userData], { type: 'application/json' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'userData.json';
-      link.click();
-    } else {
-      alert('No data found in localStorage to download!');
-    }
-  };
-
   return (
     <BrowserRouter>
       <div className="wrapper">
@@ -79,7 +64,7 @@ export default function App() {
               />
             }
           />
-          <Route path="/SavedImages" element={<SavedImages savedImage={savedImage} onRemoveImage={handleRemove} Ondownload={downloadData} />} />
+          <Route path="/SavedImages" element={<SavedImages savedImage={savedImage} onRemoveImage={handleRemove} />} />
         </Routes>
       </div>
     </BrowserRouter>

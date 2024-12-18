@@ -148,14 +148,11 @@ p {
   width: 100%;
 }
 
-.deleteBtn, .downloadBtn{
+.deleteBtn{
   background-color: var(--primary-color);
   transition: background 0.5s ease-in;
 }
 .deleteBtn:active{
-  background-color: var(--btn-color);
-}
-.downloadBtn:active{
   background-color: var(--btn-color);
 }
 @media screen and (max-width: 1024px) {

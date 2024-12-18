@@ -3,12 +3,12 @@ import { useState } from "react";
 import axios from "axios";
 
 // import chair from "../assets/chair.jpeg";
+import { NavLink } from "react-router-dom";
 // components
 import Header from "./Header";
 // import UrlImage from "./urlImage";
 import ImportImage from "./importImage";
 import Loading from "./Loading";
-import Menu from "../Menu";
 
 export default function Remover({
   menu,
@@ -17,8 +17,8 @@ export default function Remover({
   // setWebURL,
   importedURL,
   setImportedURL,
-  outputImage, setOutputImage
 }) {
+  const [outputImage, setOutputImage] = useState(""); // State to store the output image URL
   const [loading,setLoading]= useState(false)
   function handleMenu() {
     setMenu(() => true);
@@ -103,7 +103,12 @@ export default function Remover({
   return (
     <div className="container">
       {menu && (
-        <Menu handleCloseMenu={handleCloseMenu} />
+        <div className="Menu" onClick={handleCloseMenu}>
+          <span style={{ fontSize: "24px" }}>&#10006;</span>
+          <NavLink to="/SavedImages">
+            <p>See Saved Images</p>
+          </NavLink>
+        </div>
       )}
      <Header handleMenu={handleMenu}/>
 
@@ -120,7 +125,7 @@ export default function Remover({
         {loading &&  <Loading />}
       {outputImage && (
         <>
-          {/* <h3>Background Removed Image:</h3> */}
+          <h3>Background Removed Image:</h3>
          <div className="outputWrap">
           <img src={outputImage} alt="Output" />
           </div> 

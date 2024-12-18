@@ -23,42 +23,17 @@ export default function App() {
 
      // Update localStorage when shortUrl changes
   useEffect(() => {
-    if (outputImage) {
-      setSavedImage((prevImage) => {
-        if (!prevImage.includes(outputImage)) {
-          const updatedImages = [...prevImage, outputImage];
-          localStorage.setItem("savedImage", JSON.stringify(updatedImages));
-          return updatedImages;
+    if (shortUrl) {
+      setStoredUrls((prevUrls) => {
+        if (!prevUrls.includes(shortUrl)) {
+          const updatedUrls = [...prevUrls, shortUrl];
+          localStorage.setItem("shortUrl", JSON.stringify(updatedUrls));
+          return updatedUrls;
         }
-        return prevImage; // Avoid unnecessary state updates
+        return prevUrls; // Avoid unnecessary state updates
       });
     }
-  }, [outputImage])
-
-
-    // Remove URL from localStorage and state
-    const handleRemove = (imageToRemove) => {
-      const updatedImage = storedUrls.filter((image) => image !== imageToRemove);
-      setSavedImage(updatedImage);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("savedImage", JSON.stringify(updatedImage));
-      }
-    };
-
-
-  // Download localStorage data as a file
-  const downloadData = () => {
-    const userData = localStorage.getItem('savedImage');
-    if (userData) {
-      const blob = new Blob([userData], { type: 'application/json' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'userData.json';
-      link.click();
-    } else {
-      alert('No data found in localStorage to download!');
-    }
-  };
+  }, [shortUrl])
 
   return (
     <BrowserRouter>
@@ -79,7 +54,7 @@ export default function App() {
               />
             }
           />
-          <Route path="/SavedImages" element={<SavedImages savedImage={savedImage} onRemoveImage={handleRemove} Ondownload={downloadData} />} />
+          <Route path="/SavedImages" element={<SavedImages savedImage={savedImage} />} />
         </Routes>
       </div>
     </BrowserRouter>

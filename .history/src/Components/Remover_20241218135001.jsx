@@ -17,8 +17,8 @@ export default function Remover({
   // setWebURL,
   importedURL,
   setImportedURL,
-  outputImage, setOutputImage
 }) {
+  const [outputImage, setOutputImage] = useState(""); // State to store the output image URL
   const [loading,setLoading]= useState(false)
   function handleMenu() {
     setMenu(() => true);
@@ -103,7 +103,7 @@ export default function Remover({
   return (
     <div className="container">
       {menu && (
-        <Menu handleCloseMenu={handleCloseMenu} />
+        <Menu/>
       )}
      <Header handleMenu={handleMenu}/>
 
